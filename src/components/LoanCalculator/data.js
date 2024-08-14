@@ -1,0 +1,51 @@
+export const bankData = [
+  {
+    name: "BBVA",
+    paymentFactor: 0.010259,
+    minimumAge: 26,
+    interestRate: "9.35% al 11.70%",
+    logo: "https://graffica.info/wp-content/uploads/2019/04/logo-bbva-05-1.png",
+  },
+  {
+    name: "Banorte",
+    paymentFactor: 0.011696,
+    minimumAge: 25,
+    interestRate: "9.38% al 14%",
+    logo: "https://www.banorte.com/cms/redes_sociales/Banorte.jpg",
+  },
+  {
+    name: "HSBC",
+    paymentFactor: 0.012221,
+    minimumAge: 25,
+    interestRate: "9.88% al 12.99%",
+    logo: "https://storage.googleapis.com/www-paredro-com/uploads/2019/02/El-logo-de-HSBC-tiene-ma%CC%81s-origen-escoce%CC%81s-que-chino-e1550791687399.jpg",
+  },
+  {
+    name: "Santander",
+    paymentFactor: 0.013362,
+    minimumAge: 21,
+    interestRate: "9.85% al 13.25%",
+    logo: "https://i.pinimg.com/originals/35/26/f3/3526f3b2271a62a90529b589535763bd.png",
+  },
+  {
+    name: "Scotiabank",
+    paymentFactor: 0.012292,
+    minimumAge: 25,
+    interestRate: "9.50% al 12.75%",
+    logo: "https://media.informabtl.com/wp-content/uploads/2014/12/ShowcaseScotiabank.jpg",
+  },
+  {
+    name: "Banamex",
+    paymentFactor: 0.011635,
+    minimumAge: 23,
+    interestRate: "9.25% al 11.75%",
+    logo: "https://w7.pngwing.com/pngs/362/82/png-transparent-banamex-hd-logo.png",
+  },
+  {
+    name: "Banregio",
+    paymentFactor: 0.012393,
+    minimumAge: 22,
+    interestRate: "10% al 12.00%",
+    logo: "https://brandemia.org/sites/default/files/inline/images/logo-banregio_2.jpg",
+  },
+];
