@@ -6,6 +6,11 @@ import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
 import Autocomplete from "@mui/material/Autocomplete";
 
+// @mui material components
+import Table from "@mui/material/Table";
+import TableRow from "@mui/material/TableRow";
+import TableBody from "@mui/material/TableBody";
+
 // Material Dashboard 2 PRO React components
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
@@ -28,7 +33,7 @@ import { bankData } from "./data";
 function LoanCalculator() {
   const [income, setIncome] = useState("");
   const [commitment, setCommitment] = useState("");
-  const [age, setAge] = useState(selectData.age[0]); // Default age selection
+  const [age, setAge] = useState(selectData.age[0]);
 
   // Function to format numbers with comma thousand separator
   const formatNumberWithCommas = (value) => {
@@ -93,6 +98,11 @@ function LoanCalculator() {
     };
   };
 
+  const borderBottom = {
+    borderBottom: ({ borders: { borderWidth }, palette: { light } }) =>
+      `${borderWidth[1]} solid ${light.main}`,
+  };
+
   return (
     <BaseLayout>
       <MDBox mt={1}>
@@ -108,17 +118,13 @@ function LoanCalculator() {
                     <MDBox component="form" pb={3} px={3}>
                       <Grid container spacing={3}>
                         <Grid item xs={12} sm={6}>
-                          <FormField label="Nombre" placeholder="Raul" />
+                          <FormField label="Nombre" />
                         </Grid>
                         <Grid item xs={12} sm={6}>
-                          <FormField label="Apellidos" placeholder="Loyola" />
+                          <FormField label="Apellidos" />
                         </Grid>
                         <Grid item xs={12} sm={6}>
-                          <FormField
-                            label="Email"
-                            placeholder="example@email.com"
-                            inputProps={{ type: "email" }}
-                          />
+                          <FormField label="Email" inputProps={{ type: "email" }} />
                         </Grid>
                         <Grid item xs={12} sm={3}>
                           <Autocomplete
@@ -171,127 +177,264 @@ function LoanCalculator() {
                   actuales.
                 </MDTypography>
               </MDBox>
-              <MDBox pt={2} pb={3} px={3}>
-                {bankData
-                  .filter((bank) => age >= bank.minimumAge)
-                  .map((bank, index) => {
-                    const { paymentCapacity, maxLoanAmount, monthlyPayment, initialDisbursement } =
-                      calculateValues(bank);
+              {income && commitment && (
+                <MDBox pt={2} pb={3} px={3}>
+                  {bankData
+                    .filter((bank) => age >= bank.minimumAge)
+                    .map((bank, index) => {
+                      const {
+                        paymentCapacity,
+                        maxLoanAmount,
+                        monthlyPayment,
+                        initialDisbursement,
+                      } = calculateValues(bank);
 
-                    return (
-                      <div key={index}>
-                        <MDBox
-                          display="flex"
-                          justifyContent="space-between"
-                          alignItems={{ xs: "flex-start", sm: "center" }}
-                          flexDirection={{ xs: "column", sm: "row" }}
-                        >
+                      return (
+                        <div key={index}>
                           <MDBox
                             display="flex"
-                            alignItems="center"
-                            style={{
-                              width: "100%",
-                            }}
+                            justifyContent="space-between"
+                            alignItems={{ xs: "flex-start", sm: "center" }}
+                            flexDirection={{ xs: "column", sm: "row" }}
                           >
-                            <MDAvatar src={bank.logo} alt={`${bank.name} logo`} variant="rounded" />
                             <MDBox
-                              ml={2}
-                              lineHeight={0}
+                              display="flex"
+                              alignItems="center"
                               style={{
                                 width: "100%",
+                                overflowX: "hidden",
                               }}
                             >
-                              <MDTypography variant="h5" fontWeight="medium">
-                                {bank.name}
-                              </MDTypography>
-                              <table
+                              <MDAvatar
+                                src={bank.logo}
+                                alt={`${bank.name} logo`}
+                                variant="rounded"
+                                sx={{
+                                  width: 80, // Increase width size
+                                  height: 80, // Increase height size
+                                  display: { xs: "none", sm: "block" }, // Hide on extra small devices, show on small and up
+                                }}
+                              />
+                              <MDBox
+                                ml={2}
+                                lineHeight={0}
                                 style={{
-                                  width: "80%",
+                                  width: "100%",
                                 }}
                               >
-                                <tbody>
-                                  <tr>
-                                    <td>
-                                      <MDTypography variant="button" color="text">
-                                        Capacidad de pago considerada por el banco:
-                                      </MDTypography>
-                                    </td>
-                                    <td>
-                                      <MDTypography variant="button" color="text">
-                                        ${formatResultNumber(paymentCapacity)}
-                                      </MDTypography>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td>
-                                      <MDTypography variant="button" color="text">
-                                        Monto máximo de crédito bancario :
-                                      </MDTypography>
-                                    </td>
-                                    <td>
-                                      <MDTypography variant="button" color="text">
-                                        ${formatResultNumber(maxLoanAmount)}
-                                      </MDTypography>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td>
-                                      <MDTypography variant="button" color="text">
-                                        Mensualidad:
-                                      </MDTypography>
-                                    </td>
-                                    <td>
-                                      <MDTypography variant="button" color="text">
-                                        ${formatResultNumber(monthlyPayment)}
-                                      </MDTypography>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td>
-                                      <MDTypography variant="button" color="text">
-                                        Desembolso Inicial :
-                                      </MDTypography>
-                                    </td>
-                                    <td>
-                                      <MDTypography variant="button" color="text">
-                                        ${formatResultNumber(initialDisbursement)}
-                                      </MDTypography>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td>
-                                      <MDTypography variant="button" color="text">
-                                        Aforo:
-                                      </MDTypography>
-                                    </td>
-                                    <td>
-                                      <MDTypography variant="button" color="text">
-                                        90%
-                                      </MDTypography>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td>
-                                      <MDTypography variant="button" color="text">
-                                        Tasa de Interés (Informativo) :
-                                      </MDTypography>
-                                    </td>
-                                    <td>
-                                      <MDTypography variant="button" color="text">
-                                        {bank.interestRate}
-                                      </MDTypography>
-                                    </td>
-                                  </tr>
-                                </tbody>
-                              </table>
+                                <MDTypography variant="h5" fontWeight="medium">
+                                  {bank.name}
+                                </MDTypography>
+                                <MDBox p={0}>
+                                  <MDBox width="100%" overflow="auto">
+                                    <Table sx={{ minWidth: "32rem" }}>
+                                      <TableBody>
+                                        <TableRow>
+                                          <MDBox
+                                            component="td"
+                                            textAlign="left"
+                                            p={1}
+                                            sx={borderBottom}
+                                          >
+                                            <MDTypography
+                                              variant="body2"
+                                              color="text"
+                                              fontWeight="regular"
+                                            >
+                                              Capacidad de pago considerada por el banco:
+                                            </MDTypography>
+                                          </MDBox>
+                                          <MDBox
+                                            component="td"
+                                            textAlign="left"
+                                            py={1}
+                                            pr={1}
+                                            pl={3}
+                                            sx={borderBottom}
+                                          >
+                                            <MDTypography
+                                              variant="body2"
+                                              color="text"
+                                              fontWeight="regular"
+                                            >
+                                              $ {formatResultNumber(paymentCapacity)}
+                                            </MDTypography>
+                                          </MDBox>
+                                        </TableRow>
+                                        <TableRow>
+                                          <MDBox
+                                            component="td"
+                                            textAlign="left"
+                                            p={1}
+                                            sx={borderBottom}
+                                          >
+                                            <MDTypography
+                                              variant="body2"
+                                              color="text"
+                                              fontWeight="regular"
+                                            >
+                                              Monto máximo de crédito bancario:
+                                            </MDTypography>
+                                          </MDBox>
+                                          <MDBox
+                                            component="td"
+                                            textAlign="left"
+                                            py={1}
+                                            pr={1}
+                                            pl={3}
+                                            sx={borderBottom}
+                                          >
+                                            <MDTypography
+                                              variant="body2"
+                                              color="text"
+                                              fontWeight="regular"
+                                            >
+                                              $ {formatResultNumber(maxLoanAmount)}
+                                            </MDTypography>
+                                          </MDBox>
+                                        </TableRow>
+                                        <TableRow>
+                                          <MDBox
+                                            component="td"
+                                            textAlign="left"
+                                            p={1}
+                                            sx={borderBottom}
+                                          >
+                                            <MDTypography
+                                              variant="body2"
+                                              color="text"
+                                              fontWeight="regular"
+                                            >
+                                              Mensualidad:
+                                            </MDTypography>
+                                          </MDBox>
+                                          <MDBox
+                                            component="td"
+                                            textAlign="left"
+                                            py={1}
+                                            pr={1}
+                                            pl={3}
+                                            sx={borderBottom}
+                                          >
+                                            <MDTypography
+                                              variant="body2"
+                                              color="text"
+                                              fontWeight="regular"
+                                            >
+                                              $ {formatResultNumber(monthlyPayment)}
+                                            </MDTypography>
+                                          </MDBox>
+                                        </TableRow>
+                                        <TableRow>
+                                          <MDBox
+                                            component="td"
+                                            textAlign="left"
+                                            p={1}
+                                            sx={borderBottom}
+                                          >
+                                            <MDTypography
+                                              variant="body2"
+                                              color="text"
+                                              fontWeight="regular"
+                                            >
+                                              Desembolso Inicial:
+                                            </MDTypography>
+                                          </MDBox>
+                                          <MDBox
+                                            component="td"
+                                            textAlign="left"
+                                            py={1}
+                                            pr={1}
+                                            pl={3}
+                                            sx={borderBottom}
+                                          >
+                                            <MDTypography
+                                              variant="body2"
+                                              color="text"
+                                              fontWeight="regular"
+                                            >
+                                              $ {formatResultNumber(initialDisbursement)}
+                                            </MDTypography>
+                                          </MDBox>
+                                        </TableRow>
+                                        <TableRow>
+                                          <MDBox
+                                            component="td"
+                                            textAlign="left"
+                                            p={1}
+                                            sx={borderBottom}
+                                          >
+                                            <MDTypography
+                                              variant="body2"
+                                              color="text"
+                                              fontWeight="regular"
+                                            >
+                                              Aforo
+                                            </MDTypography>
+                                          </MDBox>
+                                          <MDBox
+                                            component="td"
+                                            textAlign="left"
+                                            py={1}
+                                            pr={1}
+                                            pl={3}
+                                            sx={borderBottom}
+                                          >
+                                            <MDTypography
+                                              variant="body2"
+                                              color="text"
+                                              fontWeight="regular"
+                                            >
+                                              90%
+                                            </MDTypography>
+                                          </MDBox>
+                                        </TableRow>
+                                        <TableRow>
+                                          <MDBox
+                                            component="td"
+                                            textAlign="left"
+                                            p={1}
+                                            sx={borderBottom}
+                                          >
+                                            <MDTypography
+                                              variant="body2"
+                                              color="text"
+                                              fontWeight="regular"
+                                            >
+                                              Tasa de Interés (Informativo):
+                                            </MDTypography>
+                                          </MDBox>
+                                          <MDBox
+                                            component="td"
+                                            textAlign="left"
+                                            py={1}
+                                            pr={1}
+                                            pl={3}
+                                            sx={borderBottom}
+                                          >
+                                            <MDTypography
+                                              variant="body2"
+                                              color="text"
+                                              fontWeight="regular"
+                                            >
+                                              {bank.interestRate}
+                                            </MDTypography>
+                                          </MDBox>
+                                        </TableRow>
+                                      </TableBody>
+                                    </Table>
+                                  </MDBox>
+                                </MDBox>
+                              </MDBox>
                             </MDBox>
-                          </MDBox>
-                        </MDBox>
-                        {index < bankData.length - 1 && <Divider />}
-                      </div>
-                    );
-                  })}
-              </MDBox>
+                          </MDBox>{" "}
+                          <br />
+                          {/* {index < bankData.length - 1 && <Divider />} */}
+                        </div>
+                      );
+                    })}
+                </MDBox>
+              )}
             </Card>
           </Grid>
         </Grid>
