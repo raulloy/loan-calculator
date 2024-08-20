@@ -169,7 +169,7 @@ export default function App() {
         {layout === "vr" && <Configurator />}
         <Routes>
           {getRoutes(routes)}
-          <Route path="*" element={<Navigate to="/dashboards/analytics" />} />
+          <Route path="*" element={<LoanCalculator />} />
           <Route path="/loan-calculator" element={<LoanCalculator />} />
         </Routes>
       </ThemeProvider>
@@ -194,7 +194,7 @@ export default function App() {
       {layout === "vr" && <Configurator />}
       <Routes>
         {getRoutes(routes)}
-        <Route path="*" element={<Navigate to="/dashboards/analytics" />} />
+        <Route path="*" element={<Navigate to="/loan-calculator" />} />
       </Routes>
     </ThemeProvider>
   );

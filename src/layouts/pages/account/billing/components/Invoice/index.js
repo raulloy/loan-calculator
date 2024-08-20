@@ -35,21 +35,22 @@ function Invoice({ date, id, price, noGutter }) {
       mb={noGutter ? 0 : 1}
     >
       <MDBox lineHeight={1.125}>
-        <MDTypography display="block" variant="button" fontWeight="medium">
+        <MDTypography display="block" variant="button">
+          {/* <MDTypography display="block" variant="button" fontWeight="medium"> */}
           {date}
         </MDTypography>
-        <MDTypography variant="caption" fontWeight="regular" color="text">
+        {/* <MDTypography variant="caption" fontWeight="regular" color="text">
           {id}
-        </MDTypography>
+        </MDTypography> */}
       </MDBox>
       <MDBox display="flex" alignItems="center">
-        <MDTypography variant="button" fontWeight="regular" color="text">
+        {/* <MDTypography variant="button" fontWeight="regular" color="text">
           {price}
-        </MDTypography>
-        <MDBox display="flex" alignItems="center" lineHeight={1} ml={3} sx={{ cursor: "pointer" }}>
-          <Icon fontSize="small">picture_as_pdf</Icon>
-          <MDTypography variant="button" fontWeight="bold">
-            &nbsp;PDF
+        </MDTypography> */}
+        <MDBox display="flex" alignItems="center" lineHeight={1} ml={4}>
+          {/* <Icon fontSize="small">picture_as_pdf</Icon> */}
+          <MDTypography variant="button" fontWeight="normal">
+            &nbsp;{price}
           </MDTypography>
         </MDBox>
       </MDBox>

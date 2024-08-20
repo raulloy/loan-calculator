@@ -10,6 +10,7 @@ import Autocomplete from "@mui/material/Autocomplete";
 import Table from "@mui/material/Table";
 import TableRow from "@mui/material/TableRow";
 import TableBody from "@mui/material/TableBody";
+import Invoice from "layouts/pages/account/billing/components/Invoice";
 
 // Material Dashboard 2 PRO React components
 import MDBox from "components/MDBox";
@@ -216,7 +217,7 @@ function LoanCalculator() {
                                 }}
                               />
                               <MDBox
-                                ml={2}
+                                ml={1}
                                 lineHeight={0}
                                 style={{
                                   width: "100%",
@@ -226,15 +227,18 @@ function LoanCalculator() {
                                   {bank.name}
                                 </MDTypography>
                                 <MDBox p={0}>
-                                  <MDBox width="100%" overflow="auto">
+                                  <MDBox width="100%" overflow="hidden">
                                     <Table sx={{ minWidth: "32rem" }}>
                                       <TableBody>
                                         <TableRow>
                                           <MDBox
                                             component="td"
                                             textAlign="left"
-                                            p={1}
-                                            sx={borderBottom}
+                                            p={0}
+                                            sx={{
+                                              ...borderBottom,
+                                              width: { xs: "30%", sm: "auto" }, // 60px width on small devices, auto on larger screens
+                                            }}
                                           >
                                             <MDTypography
                                               variant="body2"
@@ -249,7 +253,7 @@ function LoanCalculator() {
                                             textAlign="left"
                                             py={1}
                                             pr={1}
-                                            pl={3}
+                                            pl={2}
                                             sx={borderBottom}
                                           >
                                             <MDTypography
@@ -265,7 +269,7 @@ function LoanCalculator() {
                                           <MDBox
                                             component="td"
                                             textAlign="left"
-                                            p={1}
+                                            p={0}
                                             sx={borderBottom}
                                           >
                                             <MDTypography
@@ -281,7 +285,7 @@ function LoanCalculator() {
                                             textAlign="left"
                                             py={1}
                                             pr={1}
-                                            pl={3}
+                                            pl={2}
                                             sx={borderBottom}
                                           >
                                             <MDTypography
@@ -297,7 +301,7 @@ function LoanCalculator() {
                                           <MDBox
                                             component="td"
                                             textAlign="left"
-                                            p={1}
+                                            p={0}
                                             sx={borderBottom}
                                           >
                                             <MDTypography
@@ -313,7 +317,7 @@ function LoanCalculator() {
                                             textAlign="left"
                                             py={1}
                                             pr={1}
-                                            pl={3}
+                                            pl={2}
                                             sx={borderBottom}
                                           >
                                             <MDTypography
@@ -329,7 +333,7 @@ function LoanCalculator() {
                                           <MDBox
                                             component="td"
                                             textAlign="left"
-                                            p={1}
+                                            p={0}
                                             sx={borderBottom}
                                           >
                                             <MDTypography
@@ -345,7 +349,7 @@ function LoanCalculator() {
                                             textAlign="left"
                                             py={1}
                                             pr={1}
-                                            pl={3}
+                                            pl={2}
                                             sx={borderBottom}
                                           >
                                             <MDTypography
@@ -361,7 +365,7 @@ function LoanCalculator() {
                                           <MDBox
                                             component="td"
                                             textAlign="left"
-                                            p={1}
+                                            p={0}
                                             sx={borderBottom}
                                           >
                                             <MDTypography
@@ -377,7 +381,7 @@ function LoanCalculator() {
                                             textAlign="left"
                                             py={1}
                                             pr={1}
-                                            pl={3}
+                                            pl={2}
                                             sx={borderBottom}
                                           >
                                             <MDTypography
@@ -393,7 +397,7 @@ function LoanCalculator() {
                                           <MDBox
                                             component="td"
                                             textAlign="left"
-                                            p={1}
+                                            p={0}
                                             sx={borderBottom}
                                           >
                                             <MDTypography
@@ -409,7 +413,7 @@ function LoanCalculator() {
                                             textAlign="left"
                                             py={1}
                                             pr={1}
-                                            pl={3}
+                                            pl={2}
                                             sx={borderBottom}
                                           >
                                             <MDTypography
